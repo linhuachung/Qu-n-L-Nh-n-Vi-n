@@ -1,20 +1,7 @@
-function NhanVien(
-	taiKhoan,
-	hoTen,
-	email,
-	matKhau,
-	ngayLam,
-	luong,
-	chucVu,
-	gioLam
-){
+function NhanVien(taiKhoan, hoTen, email, ngayLam, chucVu) {
 	this.taiKhoan = taiKhoan;
-	this.hoTen = hoTen;
+	this.hoTen=hoTen;
 	this.email = email;
-	this.matKhau = matKhau;
 	this.ngayLam = ngayLam;
-	this.luong=luong;
 	this.chucVu = chucVu;
-	this.gioLam = gioLam;
-
 }
