@@ -5,12 +5,21 @@ function DanhSachNhanVien(){
 	}
 
 }
-
+DanhSachNhanVien.prototype.layChiTietNhanVien = function(taiKhoan){
+	var result = null;
+	for(var i = 0 ; i < this.dsnv.length; i++){
+		if(this.dsnv[i].taiKhoan === taiKhoan){
+			result = this.dsnv[i];
+			break;
+		}
+	}
+	return result;
+}
 DanhSachNhanVien.prototype.XoaNhanVien = function(taiKhoan){
 	var index = -1;
 	for(var i = 0 ; i<this.dsnv.length; i++){
 		if(this.dsnv[i].taiKhoan === taiKhoan){
-			index = 1;
+			index = i;
 			break;
 		}
 	}
@@ -28,3 +37,15 @@ DanhSachNhanVien.prototype.TimKiemNhanVien = function(search){
 	}
 	return result;
 };
+DanhSachNhanVien.prototype.capNhatNhanVien = function(nhanVien){
+	var index = -1;
+	for(var i = 0 ; i<this.dsnv.length; i++){
+		if(this.dsnv[i].taiKhoan === nhanVien.taiKhoan){
+			index = i;
+			break;
+		}
+	}
+	if(index !== -1){
+		this.dsnv[index] = nhanVien;
+	}
+}

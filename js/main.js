@@ -39,7 +39,8 @@ function hienThiDSNV(dsnv){
 					${nhanVien.chucVu}
 				</td>
 				<td>
-					<button class="btn btn-primary"data-taiKhoan="${nhanVien.taiKhoan}" data-action="edit">Edit</button>
+					<button class="btn btn-primary"data-taiKhoan="${nhanVien.taiKhoan}" data-action="edit" id="editModal" data-toggle="modal"
+					data-target="#myModal">Edit</button>
 					<button class="btn btn-danger"data-taiKhoan="${nhanVien.taiKhoan}" data-action="delete">Delete</button>
 				</td>
 			</tr>
@@ -56,7 +57,15 @@ function delegation(event){
 	if(action === "delete"){
 		danhSachNhanVien.XoaNhanVien(taiKhoan);
 	}else {
-		alert("edit");
+		var nhanVien = danhSachNhanVien.layChiTietNhanVien(taiKhoan);
+		document.getElementById("tknv").setAttribute("disabled",true);
+		document.getElementById("name").value = nhanVien.hoTen;
+		document.getElementById("email").value = nhanVien.email;
+		document.getElementById("datepicker").value = nhanVien.ngayLam;
+		document.getElementById("chucvu").value = nhanVien.chucVu;
+
+		
+
 	}
 	hienThiDSNV(danhSachNhanVien.dsnv);
 }
@@ -66,3 +75,16 @@ function timNhanVien(){
 	var dsnv = danhSachNhanVien.TimKiemNhanVien(search)
 	hienThiDSNV(dsnv)
 }
+
+document.getElementById("btnCapNhat").addEventListener("click",function(){
+	var taiKhoan = document.getElementById("tknv").value;
+	var hoTen = document.getElementById("name").value;
+	var email = document.getElementById("email").value;
+	var ngayLam = document.getElementById("datepicker").value;
+	var chucVu = document.getElementById("chucvu").value;
+	var nhanVien = new NhanVien(taiKhoan , hoTen, email, ngayLam, chucVu);
+
+	danhSachNhanVien.capNhatNhanVien(nhanVien);
+	hienThiDSNV(danhSachNhanVien.dsnv);
+
+});
